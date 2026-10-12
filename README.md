@@ -1,10 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>3GIS KZ</title>
-</head>
-<body>
-<h1>3GIS KZ жұмыс істеп тұр 🚀</h1>
-</body>
-</html>
+# 3GIS KZ
+
+Қазақстанға арналған GPS және карта жобасы.
+
+Мүмкіндіктер:
+
+- GPS анықтау
+- Карта көрсету
+- Маршрут құру
+- Мекеме іздеу
+- Такси шақыру
+
+Автор: Nurzhan
