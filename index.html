@@ -1,44 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="kk">
 <head>
-<meta charset="utf-8">
-<title>3GIS KZ</title>
-  
-<link rel="stylesheet"
-href="https://unpkg.com/leaflet/dist
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-body{
-margin:0;
-}
+    <title>3GIS KZ</title>
 
-#map{
-height:100vh;
-width:100%;
-}
-</style>
+    <link rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #map {
+            width: 100%;
+            height: 100vh;
+        }
+
+        .title {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
 </head>
 
 <body>
 
+<div class="title">🗺️ 3GIS KZ</div>
 <div id="map"></div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script srckg.com/leaflet@1.9.4/dist/leaflet.jsscript>
 
 <script>
 
-var map = L.map('map').setView([43.3416,52.8619],13);
+const map = L.map('map').setView([43.3416, 52.8619], 13);
 
 L.tileLayer(
-'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-{
-maxZoom:19
-}
+    'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap'
+    }
 ).addTo(map);
 
-L.marker([43.3416,52.8619])
-.addTo(map)
-.bindPopup("Жаңаөзен");
+const marker = L.marker([43.3416, 52.8619]).addTo(map);
+
+marker.bindPopup("Жаңаөзен қаласы").openPopup();
+
+if (navigator.geolocation) {
+
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+
+            L.marker([lat, lon])
+                .addTo(map)
+                .bindPopup("Менің орным");
+
+            map.setView([lat, lon], 15);
+        },
+
+        function(error) {
+            console.log(error);
+        }
+    );
+}
 
 </script>
 
